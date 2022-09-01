@@ -9,7 +9,9 @@ import (
 
 type User struct {
 	gorm.Model
+	LabId        int64
 	Name         string
+	EName        string
 	Email        *string
 	Age          uint8
 	Birthday     *time.Time

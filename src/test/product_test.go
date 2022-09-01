@@ -19,7 +19,7 @@ import (
 
 func TestAddProduct(t *testing.T) {
 	fmt.Println("start test add Product:")
-	product := models.Product{Code: "D42", Price: 100}
+	product := models.Product{LabId: 1, Code: "D42", Price: 100}
 	dao := service.ProductDao{}
 	//通过数据的指针来创建
 	result := dao.Create(&product)
@@ -63,7 +63,7 @@ func TestUpdateProduct(t *testing.T) {
 func TestDeleteProduct(t *testing.T) {
 	fmt.Println("start test delete Product:")
 	dao := service.ProductDao{}
-	result := dao.Delete(3)
+	result := dao.Delete(4)
 	if result != nil {
 		fmt.Println("delete Product: is error: ", result.Error)
 	}
