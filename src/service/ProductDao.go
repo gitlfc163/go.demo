@@ -11,26 +11,31 @@ type ProductDao struct{}
 
 func (dao *ProductDao) Create(model *models.Product) (tx *gorm.DB) {
 	//通过数据的指针来创建
-	result := dbutils.Db.Model(model).Create(&models.Product{LabId: model.LabId})
+	result := dbutils.Db.Create(&model)
 	return result
 }
 
 func (dao *ProductDao) Update(model models.Product) (tx *gorm.DB) {
 	// Update - 更新多个字段 仅更新非零值字段
-	result := dbutils.Db.Model(&model).Updates(model)
+	result := GetDb(1).Updates(model)
 	return result
 }
 
-func (dao *ProductDao) Read(id uint) (model models.Product, tx *gorm.DB) {
+func (dao *ProductDao) Read(id int64) (model models.Product, tx *gorm.DB) {
 	// 根据整型主键查找
 	dbutils.Db.First(&model, id)
+	//dbutils.Db.Table("products_01").Where("lab_id", int64(1)).First(&model, id)
 	return
 }
 
 // 根据主键删除
-func (dao *ProductDao) Delete(id uint) (tx *gorm.DB) {
+func (dao *ProductDao) Delete(id int64) (tx *gorm.DB) {
 	var model models.Product
 	// Delete - 删除 product
-	dbutils.Db.Delete(&model, id)
+	GetDb(1).Delete(&model, id)
 	return
+}
+
+func GetDb(lab_id int64) (tx *gorm.DB) {
+	return dbutils.Db.Model(&models.Product{}).Where("lab_id", int64(lab_id))
 }

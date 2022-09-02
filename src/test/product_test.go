@@ -19,7 +19,7 @@ import (
 
 func TestAddProduct(t *testing.T) {
 	fmt.Println("start test add Product:")
-	product := models.Product{LabId: 1, Code: "D42", Price: 100}
+	product := models.Product{LabId: 2, CName: "测试产品", Code: "D42", Price: 100}
 	dao := service.ProductDao{}
 	//通过数据的指针来创建
 	result := dao.Create(&product)
@@ -33,7 +33,7 @@ func TestAddProduct(t *testing.T) {
 func TestReadProduct(t *testing.T) {
 	fmt.Println("start test read Product:")
 	dao := service.ProductDao{}
-	product, result := dao.Read(2)
+	product, result := dao.Read(1565534449242738688)
 	if result != nil {
 		fmt.Println("read Product: is error: ", result.Error)
 	}
@@ -43,7 +43,7 @@ func TestReadProduct(t *testing.T) {
 func TestUpdateProduct(t *testing.T) {
 	fmt.Println("start test update Product:")
 	dao := service.ProductDao{}
-	product, result := dao.Read(2)
+	product, result := dao.Read(1565534449242738688)
 	if result != nil {
 		fmt.Println("read Product: is error: ", result.Error)
 		return
@@ -63,7 +63,7 @@ func TestUpdateProduct(t *testing.T) {
 func TestDeleteProduct(t *testing.T) {
 	fmt.Println("start test delete Product:")
 	dao := service.ProductDao{}
-	result := dao.Delete(4)
+	result := dao.Delete(1565534449242738688)
 	if result != nil {
 		fmt.Println("delete Product: is error: ", result.Error)
 	}

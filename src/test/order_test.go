@@ -9,7 +9,7 @@ import (
 
 func TestAddOrder(t *testing.T) {
 	fmt.Println("start test add order:")
-	model := models.Order{LabId: 1, UserID: 1, ProductID: 1}
+	model := models.Order{LabId: 1, UserID: 2, ProductID: 1}
 	dao := service.OrderDao{}
 	//通过数据的指针来创建
 	result := dao.Create(&model)
